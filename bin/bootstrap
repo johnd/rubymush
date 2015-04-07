@@ -19,14 +19,14 @@ else
     String :name
     String :password
     String :description
-    String :attributes
+    text :attributes
     Integer :location_id
   end
   DB.create_table(:items) do
     primary_key :id
     String :name
     String :description
-    String :attributes
+    text :attributes
     Integer :location_id
     Integer :owner_id
   end
@@ -34,7 +34,7 @@ else
     primary_key :id
     String :name
     String :description
-    String :attributes
+    text :attributes
     Integer :location_id
     Integer :destination_id
     Integer :owner_id
@@ -43,7 +43,7 @@ else
     primary_key :id
     String :name
     String :description
-    String :attributes
+    text :attributes
     Integer :owner_id
   end
 
