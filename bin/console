@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require_relative '../lib/all'
+require 'irb'
+require 'irb/completion'
+IRB.start

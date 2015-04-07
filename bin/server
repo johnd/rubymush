@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require_relative '../lib/players'
+require_relative '../lib/sessions'
+require_relative '../lib/server'
+
+RubyMUSH::Server.run
+
+exit

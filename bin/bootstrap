@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+#
+# In this script we bootstrap a new database.
+# There's some safeguards against lols.
+
+require 'bundler/setup'
+require_relative '../lib/db'
+
+# We need an empty database, and we're not going to wipe it for you.
+
+if DB.tables.any? {|table| [:players, :locations, :items, :exits]}
+  puts "The SQLite3 database is not empty!"
+  puts "Delete or remove it if you want a fresh DB."
+  exit 1
+else
+  puts "Creating minimal DB..."
+  DB.create_table(:players) do
+    primary_key :id
+    String :name
+    String :password
+    String :description
+    String :attributes
+    Integer :location_id
+  end
+  DB.create_table(:items) do
+    primary_key :id
+    String :name
+    String :description
+    String :attributes
+    Integer :location_id
+    Integer :owner_id
+  end
+  DB.create_table(:exits) do
+    primary_key :id
+    String :name
+    String :description
+    String :attributes
+    Integer :location_id
+    Integer :destination_id
+    Integer :owner_id
+  end
+  DB.create_table(:locations) do
+    primary_key :id
+    String :name
+    String :description
+    String :attributes
+    Integer :owner_id
+  end
+
+  require_relative '../lib/all'
+
+  limbo = Location.new
+  limbo.name = "Limbo"
+  limbo.description = "A swirling mist of nothing."
+  limbo.save
+
+  god = Player.new
+  god.name = "Wizard"
+  god.password = "testing"
+  god.location = limbo
+  god.save
+
+  limbo.owner = god
+  limbo.save
+end

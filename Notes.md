@@ -42,3 +42,8 @@ Use a modern NoSQL DB, ideally one supporting JSON blobs, since it's
 easy to serialize Ruby objects to JSON.
 
 Maybe EJDB?
+
+Other Versions
+--------------
+
+Someone's already made https://github.com/mangled/MangledMud - learn?
