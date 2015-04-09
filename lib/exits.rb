@@ -41,5 +41,4 @@ class Exit < Sequel::Model
     self.send("destination_#{location.class.to_s.downcase}=".to_sym, location)
   end
 
-
 end
