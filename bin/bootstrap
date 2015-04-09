@@ -74,12 +74,14 @@ else
   limbo.owner = god
   limbo.save
 
-  next_room = god.rooms.new
+  next_room = Room.new
+  next_room.owner = god
   next_room.name = "Infinity"
   next_room.description = "A black and white chessboard-patterned marble floor, stretching out to infinity."
   next_room.save
 
-  out = god.exits.new
+  out = Exit.new
+  next_room.owner = god  
   out.location = limbo
   out.destination = next_room
   out.name = "Leave limbo"
@@ -87,7 +89,8 @@ else
   out.description = "A shimmering in the mist."
   out.save
 
-  box = god.items.new
+  box = Item.new
+  next_room.owner = god  
   box.location = next_room
   box.description = "A slightly battered cardbox box, sealed with brown packing tape."
   box.save
