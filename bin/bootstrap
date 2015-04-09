@@ -89,6 +89,15 @@ else
   out.description = "A shimmering in the mist."
   out.save
 
+  back = Exit.new
+  back.owner = god
+  back.location = next_room
+  back.destination = limbo
+  back.name = "Enter limbo"
+  back.directions = "o;ou;out;b;back"
+  back.description = "A crack in the ground through which a shimmering mist can be seen."
+  back.save
+
   box = Item.new
   box.owner = god  
   box.location = next_room

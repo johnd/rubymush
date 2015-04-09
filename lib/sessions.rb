@@ -19,7 +19,7 @@ class Session
   def self.broadcast(message)
     Kernel.puts "BROADCAST MESSAGE: #{message}"
     self.clients.each do |client|
-      client.puts message
+      client.puts "[BROADCAST] " + message
     end
   end
 
@@ -27,6 +27,7 @@ class Session
     @socket = socket
     @player = nil
     Session.add_client(self)
+    Kernel.puts "Client connection from #{socket.remote_address.ip_address}"
     log_in_user
   end
 
@@ -48,9 +49,9 @@ class Session
     self.print "Password: "
     password = self.gets.chop
     if verify_password(username, password)
-      @player = Player.find(name: username).first
-      self.puts "Welcome, #{player.name}."
-      Kernel.puts "Player ##{player.id}:#{player.name} connected."
+      @player = Player.find(:name => username)
+      self.puts "Welcome, #{@player.name}."
+      Kernel.puts "Player ##{@player.id}:#{@player.name} connected."
     else
       self.puts "I do not recognise you."
       close_connection
@@ -61,14 +62,14 @@ class Session
     Kernel.puts "Closing connection with #{socket.remote_address.ip_address}."
     self.puts "Goodbye."
     Session.delete_client(self)
-    Session.broadcast "#{socket.remote_address.ip_address} has left."
+    Session.broadcast "#{player.name} has left."
     socket.close
   end
 
   private
 
   def verify_password(username, password)
-    if user = Player.find(name: username).first
+    if user = Player.find(:name => username)
       if user.password == password
         return true
       end
