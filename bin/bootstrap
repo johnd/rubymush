@@ -81,7 +81,7 @@ else
   next_room.save
 
   out = Exit.new
-  next_room.owner = god  
+  out.owner = god  
   out.location = limbo
   out.destination = next_room
   out.name = "Leave limbo"
@@ -90,7 +90,7 @@ else
   out.save
 
   box = Item.new
-  next_room.owner = god  
+  box.owner = god  
   box.location = next_room
   box.description = "A slightly battered cardbox box, sealed with brown packing tape."
   box.save
