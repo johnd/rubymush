@@ -8,7 +8,7 @@ require_relative '../lib/db'
 
 # We need an empty database, and we're not going to wipe it for you.
 
-if DB.tables.any? {|table| [:players, :locations, :items, :exits]}
+if DB.tables.any? {|table| [:players, :rooms, :items, :exits]}
   puts "The SQLite3 database is not empty!"
   puts "Delete or remove it if you want a fresh DB."
   exit 1
@@ -20,26 +20,35 @@ else
     String :password
     String :description
     text :attributes
-    Integer :location_id
+    Integer :room_id
+    Integer :item_id
+    Integer :player_id
   end
   DB.create_table(:items) do
     primary_key :id
     String :name
     String :description
     text :attributes
-    Integer :location_id
+    Integer :room_id
+    Integer :item_id
+    Integer :player_id
     Integer :owner_id
   end
   DB.create_table(:exits) do
     primary_key :id
     String :name
     String :description
+    String :directions
     text :attributes
-    Integer :location_id
-    Integer :destination_id
+    Integer :room_id
+    Integer :item_id
+    Integer :player_id
+    Integer :destination_room_id
+    Integer :destination_item_id
+    Integer :destination_player_id
     Integer :owner_id
   end
-  DB.create_table(:locations) do
+  DB.create_table(:rooms) do
     primary_key :id
     String :name
     String :description
@@ -49,7 +58,7 @@ else
 
   require_relative '../lib/all'
 
-  limbo = Location.new
+  limbo = Room.new
   limbo.name = "Limbo"
   limbo.description = "A swirling mist of nothing."
   limbo.save

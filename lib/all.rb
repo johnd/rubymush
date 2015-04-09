@@ -1,6 +1,6 @@
 require_relative './db'
 
-%w(locations
+%w(rooms
    items
    exits
    players
