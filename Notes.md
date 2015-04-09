@@ -1,5 +1,7 @@
-rotes on structure of Ruby MUSH
+Notes on structure of Ruby MUSH
 ===============================
+
+(These were initial thoughts, and don't really represent how the code developed.)
 
 Objects
 -------
