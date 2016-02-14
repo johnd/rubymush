@@ -61,9 +61,9 @@ class Session
   def close_connection
     Kernel.puts "Closing connection with #{socket.remote_address.ip_address}."
     self.puts "Goodbye."
+    socket.close
     Session.delete_client(self)
     Session.broadcast "#{player.name} has left."
-    socket.close
   end
 
   private
