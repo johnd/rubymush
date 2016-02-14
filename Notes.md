@@ -49,3 +49,27 @@ Other Versions
 --------------
 
 Someone's already made https://github.com/mangled/MangledMud - learn?
+
+New direction
+-------------
+
+So, use a 'plug in' like system where new commands are added in Ruby,
+with no in-game scripting at all. This opens up easy adding of 'builder'
+only commands, etc. Commands can be set as 'local' or global': local
+commands are bound to an object (subclassed from Item/etc) and only work
+within 'hearing range' of an instance of that object.
+
+Also, the 'exit name by itself goes that direction' thing can be done
+using the 'I don't know what that means' method just calling 'go
+<command>' and saying 'I don't know...' if it fails.
+
+We need a reasonable DB flatfile format. Raw JSON of all objects?
+
+HAs anyone done MarkDown -> Terminal rendering before? It would be cool
+to use Markdown for descriptions - Figlet for HEaders, render tables,
+etc.
+
+Can we get things like the terminal width over socket connections?
+
+Check out how Knife handles plugins foran example - we don't wantto be
+scanning gems, but it might give some Clues.
