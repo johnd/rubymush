@@ -4,7 +4,7 @@
 # There's some safeguards against lols.
 
 require 'bundler/setup'
-require_relative '../lib/db'
+require_relative '../lib/objects/db'
 
 # We need an empty database, and we're not going to wipe it for you.
 
@@ -56,7 +56,7 @@ else
     Integer :owner_id
   end
 
-  require_relative '../lib/all'
+  require_relative '../lib/objects/all'
 
   # Now let's build a simple DB with at least one of each object.
 
