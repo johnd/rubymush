@@ -23,6 +23,7 @@ else
     Integer :room_id
     Integer :item_id
     Integer :player_id
+    index :name, :unique => true
   end
   DB.create_table(:items) do
     primary_key :id

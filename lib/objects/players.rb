@@ -5,6 +5,16 @@ require 'sequel/plugins/serialization'
 class Player < Sequel::Model
 
   plugin :serialization, :json, :attributes
+  plugin :validation_helpers
+
+  def self.find_for_login(name)
+    filter(Sequel.ilike(:name, name)).first
+  end
+
+  def validate
+    super
+    validates_unique :name, :message => "is already in use"
+  end
 
   # Location in the world.
   many_to_one :room

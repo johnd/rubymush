@@ -49,7 +49,7 @@ class Session
     self.print "Password: "
     password = self.gets.chop
     if verify_password(username, password)
-      @player = Player.find(:name => username)
+      @player = Player.find_for_login(username)
       self.puts "Welcome, #{@player.name}."
       Kernel.puts "Player ##{@player.id}:#{@player.name} connected."
     else
@@ -69,7 +69,7 @@ class Session
   private
 
   def verify_password(username, password)
-    if user = Player.find(:name => username)
+    if user = Player.find_for_login(username)
       if user.password == password
         return true
       end
